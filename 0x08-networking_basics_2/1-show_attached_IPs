@@ -1,3 +1,8 @@
 #!/usr/bin/env bash
-# Script that shows attached IPs
-ifconfig | grep "inet addr:" | cut -d ':' -f 2- | cut -d ' ' -f 1 
+# Use ifconfig to retrieve network interface information and filter for IPv4 addresses
+
+# Use the 'ip' command to list all IPv4 addresses
+ipv4_addresses=$(ip -4 addr | grep -oP '(?<=inet\s)\d+(\.\d+){3}')
+
+# Display the retrieved IPv4 addresses
+echo "$ipv4_addresses"
